@@ -32,7 +32,7 @@ public class ApplicationInitConfig {
     static final String ADMIN_USER_NAME = "admin";
 
     @NonFinal
-    static final String ADMIN_PASSWORD = "12345";
+    static final String ADMIN_PASSWORD = "12345678";
 
     @Bean
     @ConditionalOnProperty(
