@@ -1,5 +1,7 @@
 package com.ndtdoanh.profile.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.ndtdoanh.profile.dto.request.UserProfileRequest;
@@ -32,5 +34,11 @@ public class UserProfileService {
         UserProfile userProfile =
                 userProfileRepository.findById(id).orElseThrow(() -> new RuntimeException("User profile not found"));
         return userProfileMapper.toUserProfileResponse(userProfile);
+    }
+
+    public List<UserProfileResponse> getAllProfiles() {
+        var profiles = userProfileRepository.findAll();
+
+        return profiles.stream().map(userProfileMapper::toUserProfileResponse).toList();
     }
 }

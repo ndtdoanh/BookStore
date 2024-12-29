@@ -1,7 +1,6 @@
-package com.ndtdoanh.identity.dto.response;
+package com.ndtdoanh.gateway.dto;
 
-import java.time.LocalDate;
-
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +13,11 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserProfileResponse {
-    String id;
-    String userId;
-    String firstName;
-    String lastName;
-    LocalDate dob;
-    String city;
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ApiResponse<T> {
+    @Builder.Default
+    int code = 1000;
+
+    String message;
+    T result;
 }

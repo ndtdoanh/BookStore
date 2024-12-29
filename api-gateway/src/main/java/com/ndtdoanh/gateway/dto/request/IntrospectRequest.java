@@ -1,6 +1,4 @@
-package com.ndtdoanh.identity.dto.response;
-
-import java.time.LocalDate;
+package com.ndtdoanh.gateway.dto.request;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,15 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserProfileResponse {
-    String id;
-    String userId;
-    String firstName;
-    String lastName;
-    LocalDate dob;
-    String city;
+public class IntrospectRequest {
+    String token;
 }

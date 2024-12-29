@@ -3,8 +3,6 @@ package com.ndtdoanh.identity.service;
 import java.util.HashSet;
 import java.util.List;
 
-import com.ndtdoanh.identity.mapper.ProfileMapper;
-import com.ndtdoanh.identity.repository.httpclient.ProfileClient;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,9 +16,11 @@ import com.ndtdoanh.identity.entity.Role;
 import com.ndtdoanh.identity.entity.User;
 import com.ndtdoanh.identity.exception.AppException;
 import com.ndtdoanh.identity.exception.ErrorCode;
+import com.ndtdoanh.identity.mapper.ProfileMapper;
 import com.ndtdoanh.identity.mapper.UserMapper;
 import com.ndtdoanh.identity.repository.RoleRepository;
 import com.ndtdoanh.identity.repository.UserRepository;
+import com.ndtdoanh.identity.repository.httpclient.ProfileClient;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
