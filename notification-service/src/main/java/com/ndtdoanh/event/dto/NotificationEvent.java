@@ -1,6 +1,4 @@
-package com.ndtdoanh.profile.dto.response;
-
-import java.time.LocalDate;
+package com.ndtdoanh.event.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -9,17 +7,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import java.util.Map;
+
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserProfileResponse {
-    String id;
-    String username;
-    String email;
-    String firstName;
-    String lastName;
-    LocalDate dob;
-    String city;
+public class NotificationEvent {
+    String channel;
+    String recipient;
+    String templateCode;
+    Map<String, Object> param;
+    String subject;
+    String body;
 }

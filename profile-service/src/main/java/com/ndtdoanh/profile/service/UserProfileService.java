@@ -2,10 +2,10 @@ package com.ndtdoanh.profile.service;
 
 import java.util.List;
 
+import com.ndtdoanh.profile.dto.request.ProfileRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import com.ndtdoanh.profile.dto.request.UserProfileRequest;
 import com.ndtdoanh.profile.dto.response.UserProfileResponse;
 import com.ndtdoanh.profile.entity.UserProfile;
 import com.ndtdoanh.profile.mapper.UserProfileMapper;
@@ -24,7 +24,7 @@ public class UserProfileService {
     UserProfileRepository userProfileRepository;
     UserProfileMapper userProfileMapper;
 
-    public UserProfileResponse createProfile(UserProfileRequest request) {
+    public UserProfileResponse createProfile(ProfileRequest request) {
         UserProfile userProfile = userProfileMapper.toUserProfile(request);
         userProfile = userProfileRepository.save(userProfile);
 

@@ -14,9 +14,10 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserProfileRequest {
+public class ProfileRequest {
     String userId;
-
+    String username;
+    String email;
     String firstName;
     String lastName;
     LocalDate dob;
