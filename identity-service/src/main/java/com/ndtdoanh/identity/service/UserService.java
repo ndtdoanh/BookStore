@@ -3,7 +3,6 @@ package com.ndtdoanh.identity.service;
 import java.util.HashSet;
 import java.util.List;
 
-import com.ndtdoanh.event.dto.NotificationEvent;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.ndtdoanh.event.dto.NotificationEvent;
 import com.ndtdoanh.identity.constant.PredefinedRole;
 import com.ndtdoanh.identity.dto.request.UserRequest;
 import com.ndtdoanh.identity.dto.request.UserUpdateRequest;
@@ -56,7 +56,7 @@ public class UserService {
 
         try {
             user = userRepository.save(user);
-        } catch (DataIntegrityViolationException exception){
+        } catch (DataIntegrityViolationException exception) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
@@ -72,7 +72,7 @@ public class UserService {
                 .body("Hello, " + request.getUsername())
                 .build();
 
-        //publish message to kafka
+        // publish message to kafka
         kafkaTemplate.send("notification-delivery", notificationEvent);
 
         var userResponse = userMapper.toUserResponse(user);

@@ -1,22 +1,21 @@
 package com.ndtdoanh.post.controller;
 
-import com.ndtdoanh.post.dto.ApiResponse;
-import com.ndtdoanh.post.dto.PageResponse;
-import com.ndtdoanh.post.dto.request.PostRequest;
-import com.ndtdoanh.post.dto.response.PostResponse;
-import com.ndtdoanh.post.service.PostService;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.ndtdoanh.post.dto.ApiResponse;
+import com.ndtdoanh.post.dto.PageResponse;
+import com.ndtdoanh.post.dto.request.PostRequest;
+import com.ndtdoanh.post.dto.response.PostResponse;
+import com.ndtdoanh.post.service.PostService;
+
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,8 +34,7 @@ public class PostController {
     @GetMapping("/my-posts")
     ApiResponse<PageResponse<PostResponse>> myPosts(
             @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-            @RequestParam(value = "size", required = false, defaultValue = "10") int size
-    ){
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size) {
         return ApiResponse.<PageResponse<PostResponse>>builder()
                 .result(postService.getMyPosts(page, size))
                 .build();

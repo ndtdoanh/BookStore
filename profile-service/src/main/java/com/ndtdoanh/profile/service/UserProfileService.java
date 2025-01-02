@@ -2,15 +2,15 @@ package com.ndtdoanh.profile.service;
 
 import java.util.List;
 
-import com.ndtdoanh.profile.dto.request.ProfileRequest;
-import com.ndtdoanh.profile.exception.AppException;
-import com.ndtdoanh.profile.exception.ErrorCode;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.ndtdoanh.profile.dto.request.ProfileRequest;
 import com.ndtdoanh.profile.dto.response.UserProfileResponse;
 import com.ndtdoanh.profile.entity.UserProfile;
+import com.ndtdoanh.profile.exception.AppException;
+import com.ndtdoanh.profile.exception.ErrorCode;
 import com.ndtdoanh.profile.mapper.UserProfileMapper;
 import com.ndtdoanh.profile.repository.UserProfileRepository;
 
@@ -35,14 +35,15 @@ public class UserProfileService {
     }
 
     public UserProfileResponse getByUserId(String userId) {
-        UserProfile userProfile = userProfileRepository.findByUserId(userId)
+        UserProfile userProfile = userProfileRepository
+                .findByUserId(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
     public UserProfileResponse getProfile(String id) {
-        UserProfile userProfile = userProfileRepository.findById(id)
-                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        UserProfile userProfile =
+                userProfileRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
@@ -56,7 +57,8 @@ public class UserProfileService {
     public UserProfileResponse getMyProfile() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         String userId = authentication.getName();
-        var profile = userProfileRepository.findByUserId(userId)
+        var profile = userProfileRepository
+                .findByUserId(userId)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         return userProfileMapper.toUserProfileResponse(profile);
     }
